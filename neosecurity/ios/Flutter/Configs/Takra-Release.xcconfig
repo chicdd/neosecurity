@@ -1,0 +1,16 @@
+#include "../Release.xcconfig"
+
+// 타크라보안 Release Flavor 설정
+FLUTTER_APP_NAME = 타크라보안
+FLUTTER_GAETONG_CODE = 31160078
+PRODUCT_BUNDLE_IDENTIFIER = com.neo.Takra
+PRODUCT_NAME = 타크라보안
+
+// App Store 업로드 설정
+CODE_SIGN_STYLE = Manual
+CODE_SIGN_IDENTITY = iPhone Distribution
+PROVISIONING_PROFILE_SPECIFIER = Takra App Store
+
+// Release 최적화 설정
+SWIFT_COMPILATION_MODE = wholemodule
+SWIFT_OPTIMIZATION_LEVEL = -O

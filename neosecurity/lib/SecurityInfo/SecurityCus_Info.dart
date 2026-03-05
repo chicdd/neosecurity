@@ -219,7 +219,7 @@ class _SecurityCusInfoState extends State<SecurityCusInfo> {
 
                     Column(
                       children:
-                          (userList ?? []).map<Widget>((user) {
+                          (userList).map<Widget>((user) {
                             return Column(
                               children: [
                                 Container(

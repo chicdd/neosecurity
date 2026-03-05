@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:neosecurity/AuthGate.dart';
 import 'dart:io';
-
 import 'flavor_config.dart';
 import 'globals.dart';
 import 'Display.dart';

@@ -20,6 +20,9 @@ elif [[ "${CONFIGURATION}" == *"seodaemun"* ]] || [[ "${PRODUCT_NAME}" == *"서�
 elif [[ "${CONFIGURATION}" == *"Hanse"* ]] || [[ "${PRODUCT_NAME}" == *"한세시큐리티"* ]]; then
     echo "Copying Hanse app icons..."
     SOURCE_PATH="$SRCROOT/Runner/Assets-Hanse.xcassets/AppIcon.appiconset"
+elif [[ "${CONFIGURATION}" == *"Takra"* ]] || [[ "${PRODUCT_NAME}" == *"타크라보안"* ]]; then
+    echo "Copying Takra app icons..."
+    SOURCE_PATH="$SRCROOT/Runner/Assets-Takra.xcassets/AppIcon.appiconset"
 else
     echo "Unknown configuration (${CONFIGURATION}) and product name (${PRODUCT_NAME}), using default icons"
     exit 0

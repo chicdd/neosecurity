@@ -38,6 +38,13 @@ android {
     flavorDimensions += "company-class"
 
     productFlavors {
+        create("Takra") {
+            dimension = "company-class"
+            applicationId = "com.neo.Takra"
+            manifestPlaceholders["appName"] = "타크라보안"
+            buildConfigField("String", "APP_NAME", "\"타크라보안\"")
+            buildConfigField("String", "GAETONG_CODE", "\"31160078\"")
+        }
         create("seodaemun") {
             dimension = "company-class"
             applicationId = "com.neo.seodaemunPocom"
