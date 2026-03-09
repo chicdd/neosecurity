@@ -81,6 +81,7 @@ class _HomeState extends State<Home> {
 
     //10초마다 setState 호출
     _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (!mounted) return;
       setState(() {
         getState();
         state = stateMatchingModel[stateList['state']] ?? '';
@@ -316,7 +317,6 @@ class _HomeState extends State<Home> {
                                   builder: (context) => const SecurityHome(),
                                 ),
                               );
-                              dispose();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
@@ -366,7 +366,6 @@ class _HomeState extends State<Home> {
                                   builder: (context) => const Setting(),
                                 ),
                               );
-                              dispose();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
@@ -559,7 +558,6 @@ class _HomeState extends State<Home> {
                                   builder: (context) => const SecurityHome(),
                                 ),
                               );
-                              dispose();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
@@ -608,7 +606,6 @@ class _HomeState extends State<Home> {
                                   builder: (context) => const ErpHome(),
                                 ),
                               );
-                              dispose();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
@@ -663,7 +660,6 @@ class _HomeState extends State<Home> {
                                   builder: (context) => const Notice(),
                                 ),
                               );
-                              dispose();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
@@ -712,7 +708,6 @@ class _HomeState extends State<Home> {
                                   builder: (context) => const Setting(),
                                 ),
                               );
-                              dispose();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
