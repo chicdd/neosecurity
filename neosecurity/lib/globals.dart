@@ -1,7 +1,6 @@
 // lib/globals.dart
-library globals;
+library;
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xml/xml.dart';
 
@@ -15,6 +14,7 @@ String certNumber = ""; //인증번호
 String message = ""; //인증발송메세지
 String phoneCode = ""; //휴대폰번호
 String centerPhone = ""; //고객센터전화번호
+bool erpVisible = false;
 String selectedOption = "";
 DateTime day_start = DateTime.now().subtract(Duration(days: 7)); //조회시작날짜
 DateTime day_end = DateTime.now(); //조회끝날짜

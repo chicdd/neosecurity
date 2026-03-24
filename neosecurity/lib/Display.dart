@@ -13,7 +13,7 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
   final List<Widget> _pages = [
     const Home(),
     const SecurityHome(),
@@ -23,7 +23,7 @@ class _DisplayState extends State<Display> {
 
   @override
   void initState() {
-    getCenterPhone();
+    getSmartSetting();
     initializeData();
     super.initState();
   }
@@ -42,7 +42,7 @@ class _DisplayState extends State<Display> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffefefef),
-      body: _pages[_selectedIndex],
+      body: SafeArea(child: _pages[_selectedIndex]),
       // bottomNavigationBar: BottomNavigationBar(
       //   type: BottomNavigationBarType.fixed, // 명시적으로 고정형 지정
       //   currentIndex: _selectedIndex,

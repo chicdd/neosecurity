@@ -400,7 +400,10 @@ class RestApiService {
     }
   }
 
-  Future<String> smartSettingRequest(String syscode, String phonecode) async {
+  Future<Map<String, String>> smartSettingRequest(
+    String syscode,
+    String phonecode,
+  ) async {
     final String baseUrl =
         "http://neodecisions.com/androidwebservice/WebPage/ServiceCustomerTest.asmx";
     final String page = "searchsetting";
@@ -423,8 +426,9 @@ class RestApiService {
       final result = document.findAllElements('리턴스마트설정마스터').first;
 
       final centerPhone = result.getElement('고객센터전화번호')?.innerText.trim() ?? '';
-      print('centerPhone 값 : $centerPhone');
-      return centerPhone;
+      final erpVisible = result.getElement('영업관리표시여부')?.innerText.trim() ?? '';
+      print('erpVisible:$erpVisible');
+      return {'centerPhone': centerPhone, 'erpVisible': erpVisible};
     } else {
       throw Exception('API 호출 실패: ${response.statusCode}');
     }
@@ -463,14 +467,7 @@ class RestApiService {
         final useline = element.getElement('사용회선종류')?.innerText.trim() ?? '';
         final remoteDeviceCode =
             element.getElement('자동원격기기코드')?.innerText.trim() ?? '';
-        print(
-          'state' +
-              state +
-              'useline' +
-              useline +
-              'remoteDeviceCode' +
-              remoteDeviceCode,
-        );
+
         return {
           'state': state,
           'useline': useline,

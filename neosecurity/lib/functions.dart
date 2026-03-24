@@ -53,8 +53,11 @@ Future<void> getState() async {
   //print('stateList[state]$state');
 }
 
-Future<void> getCenterPhone() async {
-  centerPhone = await RestApiService().smartSettingRequest(syscode, phoneCode);
+Future<void> getSmartSetting() async {
+  Map<String, String> settingValue = {};
+  settingValue = await RestApiService().smartSettingRequest(syscode, phoneCode);
+  centerPhone = settingValue['centerPhone'] ?? '';
+  erpVisible = settingValue['erpVisible'] as bool;
 }
 
 // Future<void> getCustomer() async {

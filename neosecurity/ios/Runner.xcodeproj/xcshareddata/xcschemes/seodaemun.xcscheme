@@ -32,7 +32,7 @@
       shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
-      buildConfiguration = "seodaemun-Debug"
+      buildConfiguration = "Pocom-Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       customLLDBInitFile = "$(SRCROOT)/Flutter/ephemeral/flutter_lldbinit"
@@ -74,7 +74,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "seodaemun-Release"
+      buildConfiguration = "Pocom-Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

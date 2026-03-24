@@ -74,7 +74,6 @@ class _LoginState extends State<Login> {
 
                     // 일반 계정 로직
                     if (phoneNumber.length == 11) {
-
                       // 인증번호 발송 로직 실제 빌드할 때는 주석 해제
                       RestApiService().sendSMS(
                         syscode,
@@ -135,9 +134,11 @@ class _LoginState extends State<Login> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('데모 계정으로 로그인되었습니다.')),
                     );
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const Main()),
+                      MaterialPageRoute(
+                        builder: (context) => const Display(),
+                      ), //Main으로 위젯 넘기기
                     );
                     return; // 데모 계정 처리 후 함수 종료
                   }

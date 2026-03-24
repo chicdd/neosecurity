@@ -98,13 +98,15 @@ class SecurityHomeState extends State<SecurityHome> {
             ),
             label: securityPageList[1],
           ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Icon(Icons.videocam),
+          if (syscode == '62083651') ...[
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(top: 8.0),
+                child: Icon(Icons.videocam),
+              ),
+              label: securityPageList[2],
             ),
-            label: securityPageList[2],
-          ),
+          ],
         ],
       ),
     );

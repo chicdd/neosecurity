@@ -45,11 +45,11 @@ android {
             buildConfigField("String", "APP_NAME", "\"타크라보안\"")
             buildConfigField("String", "GAETONG_CODE", "\"31160078\"")
         }
-        create("seodaemun") {
+        create("Pocom") {
             dimension = "company-class"
-            applicationId = "com.neo.seodaemunPocom"
-            manifestPlaceholders["appName"] = "서대문포콤"
-            buildConfigField("String", "APP_NAME", "\"서대문포콤\"")
+            applicationId = "com.neo.Pocom"
+            manifestPlaceholders["appName"] = "포콤방범시스템"
+            buildConfigField("String", "APP_NAME", "\"포콤방범시스템\"")
             buildConfigField("String", "GAETONG_CODE", "\"02111112\"")
         }
         create("C1") {
