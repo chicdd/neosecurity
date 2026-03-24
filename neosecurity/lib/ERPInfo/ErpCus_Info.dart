@@ -14,17 +14,32 @@ class ERPCusInfo extends StatefulWidget {
 
 class _ERPCusInfoState extends State<ERPCusInfo> {
   Timer? _dataCheckTimer;
+  bool _isLoading = true;
+
   @override
   void initState() {
+    super.initState();
     erpinitializeData();
     _startDataMonitoring();
-    super.initState();
   }
 
   @override
   void dispose() {
     _dataCheckTimer?.cancel();
     super.dispose();
+  }
+
+  void _showNoDataSnackBar() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('영업정보가 없습니다'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    });
   }
 
   void _startDataMonitoring() {
@@ -39,7 +54,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
 
       if (erpCusInfoListReady && erpListReady && mounted) {
         setState(() {
-          // Select 위젯 업데이트를 위한 setState
+          _isLoading = false;
         });
         // 데이터를 받았으므로 타이머 중지
         timer.cancel();
@@ -52,6 +67,14 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
         print(
           '최종 상태 - erpCusInfoListReady: $erpCusInfoListReady, erpListReady: $erpListReady',
         );
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+          if (erpCusInfoList.isEmpty) {
+            _showNoDataSnackBar();
+          }
+        }
       } else {
         // 디버깅용 로그 (시도 횟수 포함)
         print(
@@ -101,9 +124,25 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
           erpCusInfoList = result;
           //print("erpCusInfoList: ${erpCusInfoList}");
         }
+      } else {
+        // 고객 리스트가 없으면 즉시 로딩 종료 후 스낵바 표시
+        _dataCheckTimer?.cancel();
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+          _showNoDataSnackBar();
+        }
       }
     } catch (e) {
       print('오류: $e');
+      _dataCheckTimer?.cancel();
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+        _showNoDataSnackBar();
+      }
     }
   }
 
@@ -167,7 +206,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[0]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
@@ -192,7 +231,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[1]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -212,7 +251,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[2]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -232,7 +271,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[3]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -252,7 +291,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[4]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -301,7 +340,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[5]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
@@ -326,7 +365,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[6]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -347,7 +386,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                                 child: Text(
                                   erpCusInfoList.isNotEmpty
                                       ? erpCusInfoList[7]
-                                      : '로딩 중...',
+                                      : '',
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ),
@@ -369,7 +408,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                                 child: Text(
                                   erpCusInfoList.isNotEmpty
                                       ? erpCusInfoList[8]
-                                      : '로딩 중...',
+                                      : '',
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ),
@@ -390,7 +429,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[9]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -411,7 +450,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[10]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -432,7 +471,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[11]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -453,7 +492,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[12]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -473,7 +512,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
                               Text(
                                 erpCusInfoList.isNotEmpty
                                     ? erpCusInfoList[13]
-                                    : '로딩 중...',
+                                    : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
