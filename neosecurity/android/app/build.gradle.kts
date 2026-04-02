@@ -38,6 +38,14 @@ android {
     flavorDimensions += "company-class"
 
     productFlavors {
+        create("Neo") {
+            dimension = "company-class"
+            applicationId = "com.neo.Neo"
+            manifestPlaceholders["appName"] = "네오테스트"
+            buildConfigField("String", "APP_NAME", "\"네오테스트\"")
+            buildConfigField("String", "GAETONG_CODE", "\"02121162\"")
+        }
+
         create("Takra") {
             dimension = "company-class"
             applicationId = "com.neo.Takra"

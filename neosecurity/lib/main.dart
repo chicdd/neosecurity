@@ -21,6 +21,8 @@ Future<void> main() async {
   await fetchFlavorInfo();
   await checkAuth();
 
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
   runApp(const MyApp());
 }
 
@@ -75,6 +77,7 @@ class MyApp extends StatelessWidget {
         Locale('en', 'US'), // English
       ],
       debugShowCheckedModeBanner: false,
+      builder: (context, child) => SafeArea(child: child!),
     );
   }
 }
@@ -86,7 +89,8 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Display로 모든 것을 위임
-    return const Display();
+    return SafeArea(child: const Display());
+    //return const Display();
   }
 }
 

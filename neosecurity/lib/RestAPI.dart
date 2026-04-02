@@ -33,6 +33,31 @@ class RestApiService {
     }
   }
 
+  Future<String> send11SMS(
+    String syscode,
+    String osDivision,
+    String registrationID,
+    String phonecode,
+  ) async {
+    final String baseUrl =
+        "http://neodecisions.com/androidwebservice/WebPage/ServiceCustomerTest.asmx";
+    final String page = "registrationid_update";
+
+    final url = Uri.parse(
+      "$baseUrl/$page?syscode=$syscode&os_division=$osDivision&RegistrationID=$registrationID&phonecode=$phonecode",
+    );
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final document = XmlDocument.parse(response.body);
+      final result = document.findAllElements('string').first.innerText;
+      print('응답 결과: $result');
+      return result; // 예: "1" 또는 오류 메시지
+    } else {
+      throw Exception('SMS 전송 실패: ${response.statusCode}');
+    }
+  }
+
   Future<List<String>> secuBasicRequest(
     String syscode,
     String monnum,
@@ -73,7 +98,7 @@ class RestApiService {
     final url = Uri.parse(
       "$baseUrl/$page?syscode=$syscode&custnum=$custnum&phonecode=$phonecode",
     );
-    ////print(url);
+    print('monuser: $url');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -508,7 +533,7 @@ class RestApiService {
     final url = Uri.parse(
       "$baseUrl/$page?syscode=$syscode&monnum=$monnum&state=$state&requestreason=$requestreason&phonecode=$phonecode",
     );
-    //print(url);
+    print(url);
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

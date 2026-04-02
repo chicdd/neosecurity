@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neosecurity/ERPInfo/ERP_Home.dart';
-import 'package:neosecurity/SecurityInfo/Security_Home.dart';
 import 'package:neosecurity/Home.dart';
-import 'package:neosecurity/Setting.dart';
 import 'functions.dart';
 
 class Display extends StatefulWidget {
@@ -13,74 +10,32 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
-  final int _selectedIndex = 0;
-  final List<Widget> _pages = [
-    const Home(),
-    const SecurityHome(),
-    const ErpHome(),
-    const Setting(),
-  ];
+  bool _isLoading = true;
 
   @override
   void initState() {
-    getSmartSetting();
-    initializeData();
     super.initState();
+    _loadInitialData();
   }
 
-  // 탭 변경 함수
-  // void _onItemTapped(int index) {
-  //   if (mounted) {
-  //     // mounted 체크 추가
-  //     setState(() {
-  //       _selectedIndex = index;
-  //     });
-  //   }
-  // }
+  Future<void> _loadInitialData() async {
+    // 두 API를 병렬로 호출하여 시간 단축
+    await Future.wait([
+      getSmartSetting(),
+      initializeData(),
+    ]);
+    if (mounted) {
+      setState(() => _isLoading = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffefefef),
-      body: SafeArea(child: _pages[_selectedIndex]),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   type: BottomNavigationBarType.fixed, // 명시적으로 고정형 지정
-      //   currentIndex: _selectedIndex,
-      //   onTap: _onItemTapped,
-      //   backgroundColor: const Color(0xffffffff),
-      //   selectedItemColor: Colors.black,
-      //   unselectedItemColor: Colors.black54,
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: Padding(
-      //         padding: EdgeInsets.only(top: 8.0),
-      //         child: Icon(Icons.home_filled),
-      //       ),
-      //       label: '홈',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Padding(
-      //         padding: EdgeInsets.only(top: 8.0),
-      //         child: Icon(Icons.person),
-      //       ),
-      //       label: '관제정보',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Padding(
-      //         padding: EdgeInsets.only(top: 8.0),
-      //         child: Icon(Icons.list_alt),
-      //       ),
-      //       label: '영업정보',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Padding(
-      //         padding: EdgeInsets.only(top: 8.0),
-      //         child: Icon(Icons.settings),
-      //       ),
-      //       label: '설정',
-      //     ),
-      //   ],
-      // ),
-    );
+    if (_isLoading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+    return const Home();
   }
 }

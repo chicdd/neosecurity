@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import '../RestAPI.dart';
 import '../Select/Cus_Select.dart';
@@ -12,98 +11,38 @@ class SecurityCusInfo extends StatefulWidget {
 }
 
 class _SecurityCusInfoState extends State<SecurityCusInfo> {
-  Timer? _dataCheckTimer;
+  @override
   void initState() {
     super.initState();
-    fetchSecuBasic();
-    fetchUserList();
-    _startDataMonitoring();
+    _loadData();
   }
 
-  @override
-  void dispose() {
-    _dataCheckTimer?.cancel();
-    super.dispose();
+  Future<void> _loadData() async {
+    await Future.wait([fetchSecuBasic(), fetchUserList()]);
+    if (mounted) setState(() {});
   }
 
   Future<void> fetchSecuBasic() async {
-    print('monnum$monnum');
     try {
-      final result = await RestApiService().secuBasicRequest(
-        syscode,
-        monnum,
-        phoneCode,
-      );
-      print('result$result');
+      final result = await RestApiService().secuBasicRequest(syscode, monnum, phoneCode);
       secuBasicList = result;
 
-      if (result.isNotEmpty) {
-        if (monnum.isNotEmpty) {
-          stateList = await RestApiService().currentStateRequest(
-            syscode,
-            monnum,
-            phoneCode,
-          );
-          // state 정보 사용
-          state = stateList['state'] ?? '';
-          print('state$state');
-          print('monnum$monnum');
-          print('isremote$isremote');
-        }
+      if (result.isNotEmpty && monnum.isNotEmpty) {
+        stateList = await RestApiService().currentStateRequest(syscode, monnum, phoneCode);
+        state = stateList['state'] ?? '';
       }
-
-      //print("globals.secuBasicList: ${secuBasicList}");
     } catch (e) {
-      //print("API 호출 오류: $e");
+      print('fetchSecuBasic 오류: $e');
     }
-    print('api호출함');
   }
 
   Future<void> fetchUserList() async {
-    final result = await RestApiService().userListRequest(
-      syscode,
-      monnum,
-      phoneCode,
-    );
-    userList = result;
-    setState(() {});
-  }
-
-  void _startDataMonitoring() {
-    int attemptCount = 0; // 시도 횟수 카운터 추가
-    const int maxAttempts = 20; // 최대 시도 횟수
-
-    _dataCheckTimer = Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      attemptCount++; // 시도 횟수 증가
-
-      // cusList, stateList, state 모두 체크
-      bool secuBasicListReady = secuBasicList.isNotEmpty;
-      bool userListReady = userList.isNotEmpty;
-
-      if (secuBasicListReady && userListReady && mounted) {
-        setState(() {
-          // Select 위젯 업데이트를 위한 setState
-        });
-        // 데이터를 받았으므로 타이머 중지
-        timer.cancel();
-        print('모든 데이터 감지됨, Select 업데이트');
-        print('cusList 개수: ${cusList.length}');
-      } else if (attemptCount >= maxAttempts) {
-        // 20번 시도 후에도 데이터가 없으면 타이머 중지
-        timer.cancel();
-        print('응답없음 - ${maxAttempts}번 시도 후 타임아웃');
-        fetchSecuBasic();
-        fetchUserList();
-        print(
-          '최종 상태 - secuBasicListReady: $secuBasicListReady, userListReady: $userListReady',
-        );
-      } else {
-        // 디버깅용 로그 (시도 횟수 포함)
-        print(
-          '데이터 대기 중 ($attemptCount/$maxAttempts) - secuBasicListReady: $secuBasicListReady, userListReady: $userListReady',
-        );
-      }
-    });
+    try {
+      final result = await RestApiService().userListRequest(syscode, monnum, phoneCode);
+      userList = result;
+    } catch (e) {
+      print('fetchUserList 오류: $e');
+    }
   }
 
   @override
@@ -116,10 +55,7 @@ class _SecurityCusInfoState extends State<SecurityCusInfo> {
           children: [
             CusSelect(
               onPressed: () {
-                setState(() {
-                  fetchSecuBasic();
-                  fetchUserList();
-                });
+                _loadData(); // 내부에서 setState() 호출
               },
             ),
 
@@ -146,7 +82,6 @@ class _SecurityCusInfoState extends State<SecurityCusInfo> {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
                       ),
 
@@ -165,9 +100,7 @@ class _SecurityCusInfoState extends State<SecurityCusInfo> {
                               ),
 
                               Text(
-                                secuBasicList.isNotEmpty
-                                    ? secuBasicList[0]
-                                    : '로딩 중...',
+                                secuBasicList.isNotEmpty ? secuBasicList[0] : '',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
@@ -190,9 +123,7 @@ class _SecurityCusInfoState extends State<SecurityCusInfo> {
                               ),
 
                               Text(
-                                secuBasicList.length > 1
-                                    ? secuBasicList[1]
-                                    : '로딩 중...',
+                                secuBasicList.length > 1 ? secuBasicList[1] : '',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -219,7 +150,7 @@ class _SecurityCusInfoState extends State<SecurityCusInfo> {
 
                     Column(
                       children:
-                          (userList).map<Widget>((user) {
+                          userList.map<Widget>((user) {
                             return Column(
                               children: [
                                 Container(

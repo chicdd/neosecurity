@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:neosecurity/Select/ERP_Select.dart';
 import '../RestAPI.dart';
@@ -13,75 +11,30 @@ class ERPCusInfo extends StatefulWidget {
 }
 
 class _ERPCusInfoState extends State<ERPCusInfo> {
-  Timer? _dataCheckTimer;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    erpinitializeData();
-    _startDataMonitoring();
+    _loadData();
   }
 
-  @override
-  void dispose() {
-    _dataCheckTimer?.cancel();
-    super.dispose();
-  }
-
-  void _showNoDataSnackBar() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('영업정보가 없습니다'),
-            duration: Duration(seconds: 2),
-          ),
-        );
-      }
-    });
-  }
-
-  void _startDataMonitoring() {
-    int attemptCount = 0; // 시도 횟수 카운터 추가
-    const int maxAttempts = 20; // 최대 시도 횟수
-
-    _dataCheckTimer = Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      attemptCount++; // 시도 횟수 증가
-
-      bool erpCusInfoListReady = erpCusInfoList.isNotEmpty;
-      bool erpListReady = erpList.isNotEmpty;
-
-      if (erpCusInfoListReady && erpListReady && mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-        // 데이터를 받았으므로 타이머 중지
-        timer.cancel();
-        print('모든 데이터 감지됨, Select 업데이트');
-        print('erpCusInfoList 개수: ${erpCusInfoList.length}');
-      } else if (attemptCount >= maxAttempts) {
-        // 20번 시도 후에도 데이터가 없으면 타이머 중지
-        timer.cancel();
-        print('응답없음 - ${maxAttempts}번 시도 후 타임아웃');
-        print(
-          '최종 상태 - erpCusInfoListReady: $erpCusInfoListReady, erpListReady: $erpListReady',
-        );
+  Future<void> _loadData() async {
+    await erpinitializeData();
+    if (!mounted) return;
+    setState(() => _isLoading = false);
+    if (erpCusInfoList.isEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
-          setState(() {
-            _isLoading = false;
-          });
-          if (erpCusInfoList.isEmpty) {
-            _showNoDataSnackBar();
-          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('영업정보가 없습니다'),
+              duration: Duration(seconds: 2),
+            ),
+          );
         }
-      } else {
-        // 디버깅용 로그 (시도 횟수 포함)
-        print(
-          '데이터 대기 중 ($attemptCount/$maxAttempts) - erpCusInfoListReady: $erpCusInfoListReady, erpListReady: $erpListReady',
-        );
-      }
-    });
+      });
+    }
   }
 
   Future<void> fetchErpCusInfo() async {
@@ -102,47 +55,22 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
 
   Future<void> erpinitializeData() async {
     try {
-      // 1단계: 먼저 고객 리스트 가져오기
-      final erpcustomers = await RestApiService().erpCusListRequest(
-        syscode,
-        phoneCode,
-      );
+      // 1단계: 고객 리스트 가져오기
+      final erpcustomers = await RestApiService().erpCusListRequest(syscode, phoneCode);
       erpList = erpcustomers;
-      print('result$erpcustomers');
-      //selectErpList = erpList[erpselectInt];
-      yongnum = erpList[erpselectInt]['yongnum'] ?? '';
 
-      // 2단계: 첫 번째 고객 또는 선택된 고객의 상태 정보 가져오기
-      if (erpcustomers.isNotEmpty) {
-        final yongnum = erpcustomers[0]['yongnum'] ?? '';
-        if (yongnum.isNotEmpty) {
-          final result = await RestApiService().erpCusInfoRequest(
-            syscode,
-            yongnum,
-            phoneCode,
-          );
-          erpCusInfoList = result;
-          //print("erpCusInfoList: ${erpCusInfoList}");
-        }
-      } else {
-        // 고객 리스트가 없으면 즉시 로딩 종료 후 스낵바 표시
-        _dataCheckTimer?.cancel();
-        if (mounted) {
-          setState(() {
-            _isLoading = false;
-          });
-          _showNoDataSnackBar();
-        }
+      if (erpcustomers.isEmpty) return; // 빈 리스트면 종료 (_loadData에서 스낵바 처리)
+
+      // erpselectInt 범위 초과 방지
+      final idx = erpselectInt.clamp(0, erpList.length - 1);
+      yongnum = erpList[idx]['yongnum'] ?? '';
+
+      // 2단계: 선택된 고객의 상세 정보 가져오기
+      if (yongnum.isNotEmpty) {
+        erpCusInfoList = await RestApiService().erpCusInfoRequest(syscode, yongnum, phoneCode);
       }
     } catch (e) {
-      print('오류: $e');
-      _dataCheckTimer?.cancel();
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-        _showNoDataSnackBar();
-      }
+      print('erpinitializeData 오류: $e');
     }
   }
 
@@ -156,9 +84,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
           children: [
             ERPSelect(
               onPressed: () {
-                setState(() {
-                  fetchErpCusInfo();
-                });
+                fetchErpCusInfo(); // 내부에서 setState() 호출
               },
             ),
 

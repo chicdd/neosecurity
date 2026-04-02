@@ -22,80 +22,30 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Timer? _timer;
-  Timer? _dataCheckTimer;
-  late String title = '타이틀 없음';
 
-  void _startDataMonitoring() {
-    int attemptCount = 0; // 시도 횟수 카운터 추가
-    const int maxAttempts = 20; // 최대 시도 횟수
-
-    _dataCheckTimer = Timer.periodic(const Duration(milliseconds: 1000), (
-      timer,
-    ) {
-      attemptCount++; // 시도 횟수 증가
-
-      // cusList, stateList, state 모두 체크
-      bool cusListReady = cusList.isNotEmpty;
-      bool stateListReady = stateList.isNotEmpty;
-      bool stateReady = state.isNotEmpty;
-
-      if (cusListReady && stateListReady && stateReady && mounted) {
-        setState(() {
-          // Select 위젯 업데이트를 위한 setState
-        });
-        // 데이터를 받았으므로 타이머 중지
-        timer.cancel();
-        print('모든 데이터 감지됨, Select 업데이트');
-        print('cusList 개수: ${cusList.length}');
-        print('stateList: $stateList');
-        print('state: $state');
-        UiChanger(state);
-        selectedOption = stateMatchingModel[stateList['state']] ?? '';
-      } else if (attemptCount >= maxAttempts) {
-        // 20번 시도 후에도 데이터가 없으면 타이머 중지
-        timer.cancel();
-        print('응답없음 - ${maxAttempts}번 시도 후 타임아웃');
-        initializeData();
-        print(
-          '최종 상태 - cusList: $cusListReady, stateList: $stateListReady, state: $stateReady',
-        );
-      } else {
-        // 5회마다 fetchUserList 호출
-        if (attemptCount % 5 == 0) {
-          print('데이터 없음, ${attemptCount}회 시도 중 fetchUserList() 실행');
-          initializeData();
-        }
-
-        // 디버깅용 로그 (시도 횟수 포함)
-        print(
-          '데이터 대기 중 ($attemptCount/$maxAttempts) - cusList: $cusListReady, stateList: $stateListReady, state: $stateReady',
-        );
-      }
-    });
-  }
-
+  @override
   void initState() {
     super.initState();
-    _startDataMonitoring();
-    setState(() {});
+    // Display에서 데이터 로딩이 완료된 후 진입하므로 바로 UI 상태 초기화
+    selectedOption = stateMatchingModel[stateList['state']] ?? '';
 
-    //10초마다 setState 호출
+    // 10초마다 현재 상태 갱신
     _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
       if (!mounted) return;
-      setState(() {
-        getState();
-        state = stateMatchingModel[stateList['state']] ?? '';
+      getState().then((_) {
+        if (mounted) {
+          setState(() {
+            state = stateList['state'] ?? '';
+            selectedOption = stateMatchingModel[state] ?? '';
+          });
+        }
       });
-      print('globals.stateList${stateList}');
-
-      //print("_selectedOption" + state);
     });
   }
 
   @override
   void dispose() {
-    _timer?.cancel(); // 꼭 해제해 주세요!
-    _dataCheckTimer?.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -290,8 +240,8 @@ class _HomeState extends State<Home> {
 
             const SizedBox(height: 20),
 
-            //영업관리표시여부 열이 true고 고객관리번호에 값이 있으면 영업정보 보임.
-            if (erpVisible == true && yongnum != '') ...[
+            //영업관리표시여부 열이 true면 영업정보 보임.
+            if (erpVisible == true) ...[
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -783,7 +733,7 @@ class _HomeState extends State<Home> {
         onTap: () {
           setState(() {
             selectedOption = value;
-            print(state);
+            print(selectedOption);
           });
         },
         child: Container(

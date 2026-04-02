@@ -54,10 +54,17 @@ Future<void> getState() async {
 }
 
 Future<void> getSmartSetting() async {
-  Map<String, String> settingValue = {};
-  settingValue = await RestApiService().smartSettingRequest(syscode, phoneCode);
-  centerPhone = settingValue['centerPhone'] ?? '';
-  erpVisible = settingValue['erpVisible'] as bool;
+  try {
+    final settingValue = await RestApiService().smartSettingRequest(
+      syscode,
+      phoneCode,
+    );
+    centerPhone = settingValue['centerPhone'] ?? '';
+    erpVisible =
+        settingValue['erpVisible'] == 'true'; // API는 String "true"/"false" 반환
+  } catch (e) {
+    print('getSmartSetting 오류: $e');
+  }
 }
 
 // Future<void> getCustomer() async {
@@ -95,7 +102,7 @@ Future<String> receiveRemote() async {
   result = await RestApiService().remoteRequest(
     syscode,
     monnum,
-    remoteModel[state] ?? '',
+    remoteModel[selectedOption] ?? '',
     "",
     phoneCode,
   );
@@ -139,35 +146,33 @@ String parsing(final xmlString) {
 
 Future<void> initializeData() async {
   try {
-    // 1단계: 먼저 고객 리스트 가져오기
+    // 1단계: 고객 리스트 가져오기
     final customers = await RestApiService().customerRequest(
       syscode,
       phoneCode,
     );
-    print('customers$customers');
     cusList = customers;
-    isremote = cusList[selectInt]['isremote'] ?? "";
-    monnum = cusList[selectInt]['monnum'] ?? "";
     print('cusList$cusList');
 
-    // 2단계: 첫 번째 고객 또는 선택된 고객의 상태 정보 가져오기
-    if (customers.isNotEmpty) {
-      final monnum = customers[0]['monnum'] ?? '';
-      if (monnum.isNotEmpty) {
-        stateList = await RestApiService().currentStateRequest(
-          syscode,
-          monnum,
-          phoneCode,
-        );
-        // state 정보 사용
-        state = stateList['state'] ?? '';
-        print('state$state');
-        print('monnum$monnum');
-        print('isremote$isremote');
-      }
+    if (cusList.isEmpty) return; // 고객 없으면 이하 생략
+
+    // selectInt가 범위 초과 방지
+    final idx = selectInt.clamp(0, cusList.length - 1);
+    isremote = cusList[idx]['isremote'] ?? '';
+    monnum = cusList[idx]['monnum'] ?? '';
+
+    // 2단계: 선택된 고객의 현재 상태 가져오기
+    if (monnum.isNotEmpty) {
+      stateList = await RestApiService().currentStateRequest(
+        syscode,
+        monnum,
+        phoneCode,
+      );
+      state = stateList['state'] ?? '';
+      print('state$state, monnum$monnum, isremote$isremote');
     }
   } catch (e) {
-    print('오류: $e');
+    print('initializeData 오류: $e');
   }
 }
 
