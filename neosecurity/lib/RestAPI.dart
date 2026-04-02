@@ -33,7 +33,7 @@ class RestApiService {
     }
   }
 
-  Future<String> send11SMS(
+  Future<String> registUpdate(
     String syscode,
     String osDivision,
     String registrationID,
@@ -46,6 +46,7 @@ class RestApiService {
     final url = Uri.parse(
       "$baseUrl/$page?syscode=$syscode&os_division=$osDivision&RegistrationID=$registrationID&phonecode=$phonecode",
     );
+    print(url);
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

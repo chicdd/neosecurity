@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:neosecurity/Display.dart';
 import 'package:neosecurity/Main.dart';
 import 'package:neosecurity/randomNumCreate.dart';
+import 'FCMService.dart';
 import 'RestAPI.dart';
 import 'functions.dart';
 import 'globals.dart';
@@ -131,6 +132,7 @@ class _LoginState extends State<Login> {
                     // 데모 계정으로 바로 로그인
                     phoneCode = '987654321';
                     saveToken(phoneCode); // 데모 계정 번호를 토큰으로 저장
+                    registerFCMTokenAfterLogin();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('데모 계정으로 로그인되었습니다.')),
                     );
@@ -164,7 +166,7 @@ class _LoginState extends State<Login> {
                       } else {
                         //검증 모두 통과하면
                         saveToken(phoneCode); //휴대폰번호를 토큰으로 휴대폰에 저장
-                        //await getCustomer();
+                        registerFCMTokenAfterLogin();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

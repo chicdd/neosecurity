@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:neosecurity/AuthGate.dart';
 import 'dart:io';
+import 'FCMService.dart';
 import 'flavor_config.dart';
 import 'globals.dart';
 import 'Display.dart';
@@ -18,10 +20,14 @@ Future<void> main() async {
     gaetongCode: '개통코드없음', // BuildConfig.GAETONG_CODE 값
   );
 
+  await Firebase.initializeApp();
   await fetchFlavorInfo();
   await checkAuth();
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+  // FCM 백그라운드 핸들러는 runApp 전에 등록해야 함
+  await initFCM();
 
   runApp(const MyApp());
 }
