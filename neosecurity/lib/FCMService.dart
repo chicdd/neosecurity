@@ -21,7 +21,9 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 
   await _localNotifications
-      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin
+      >()
       ?.createNotificationChannel(_channel);
 
   await _localNotifications.initialize(
@@ -95,7 +97,10 @@ Future<void> registerFCMTokenAfterLogin() async {
   }
 }
 
-void _showNotification(Map<String, dynamic> data, {bool skipSyscodeCheck = false}) {
+void _showNotification(
+  Map<String, dynamic> data, {
+  bool skipSyscodeCheck = false,
+}) {
   final msg = data['msg'] as String?;
   print('FCM msg 필드: $msg');
   if (msg == null || msg.isEmpty) return;
