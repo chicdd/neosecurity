@@ -105,7 +105,7 @@ void _showNotification(
   print('FCM msg 필드: $msg');
   if (msg == null || msg.isEmpty) return;
 
-  final parts = msg.split(',');
+  final parts = msg.split('');
   print('FCM parts 개수: ${parts.length}, parts: $parts');
   if (parts.length < 9) return;
 
