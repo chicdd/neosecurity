@@ -58,7 +58,7 @@ class _ERPSelectState extends State<ERPSelect> {
           children: [
             Text(
               title =
-                  erpList.isNotEmpty
+                  (erpList.isNotEmpty && erpselectInt >= 0)
                       ? erpList[erpselectInt]['name'] ?? '값 없음'
                       : '값 없음',
               style: const TextStyle(

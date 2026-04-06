@@ -22,7 +22,7 @@ class _BillInfoState extends State<BillInfo> {
   void initState() {
     super.initState();
     _initializeFilters();
-    _billFuture = fetchBill(); // Future로 저장
+    _billFuture = yongnum.isEmpty ? Future.value([]) : fetchBill();
   }
 
   void _initializeFilters() {

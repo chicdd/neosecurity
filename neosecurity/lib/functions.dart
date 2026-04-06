@@ -163,13 +163,17 @@ Future<void> initializeData() async {
 
     // 2단계: 선택된 고객의 현재 상태 가져오기
     if (monnum.isNotEmpty) {
-      stateList = await RestApiService().currentStateRequest(
-        syscode,
-        monnum,
-        phoneCode,
-      );
-      state = stateList['state'] ?? '';
-      print('state$state, monnum$monnum, isremote$isremote');
+      try {
+        stateList = await RestApiService().currentStateRequest(
+          syscode,
+          monnum,
+          phoneCode,
+        );
+        state = stateList['state'] ?? '';
+        print('state$state, monnum$monnum, isremote$isremote');
+      } catch (e) {
+        print('현재상태 조회 실패 (홈화면은 정상 표시): $e');
+      }
     }
   } catch (e) {
     print('initializeData 오류: $e');

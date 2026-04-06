@@ -33,8 +33,10 @@ class ErpHomeState extends State<ErpHome> {
   void initState() {
     super.initState();
     title = cusPageList[_Index];
-
     print('getErpCustomer 완료');
+    erpCusInfoList = [];
+    claimList = [];
+    billList = [];
   }
 
   @override

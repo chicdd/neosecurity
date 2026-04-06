@@ -477,7 +477,7 @@ class RestApiService {
     final response = await http
         .get(url)
         .timeout(
-          const Duration(seconds: 10),
+          const Duration(seconds: 30),
           onTimeout: () {
             throw TimeoutException('API 호출 타임아웃');
           },

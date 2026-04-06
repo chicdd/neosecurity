@@ -29,6 +29,7 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await _localNotifications.initialize(
     const InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      iOS: DarwinInitializationSettings(),
     ),
   );
 
@@ -47,6 +48,7 @@ Future<void> initFCM() async {
   await _localNotifications.initialize(
     const InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      iOS: DarwinInitializationSettings(),
     ),
   );
 
@@ -71,10 +73,14 @@ Future<void> initFCM() async {
     _registerToken(token);
   });
 
-  // 최초 토큰 서버 등록
-  final token = await FirebaseMessaging.instance.getToken();
-  if (token != null) {
-    _registerToken(token);
+  // 최초 토큰 서버 등록 (iOS 시뮬레이터는 APNS 미지원으로 실패할 수 있음)
+  try {
+    final token = await FirebaseMessaging.instance.getToken();
+    if (token != null) {
+      _registerToken(token);
+    }
+  } catch (e) {
+    print('FCM 토큰 취득 실패 (시뮬레이터일 경우 정상): $e');
   }
 }
 
@@ -150,6 +156,11 @@ void _showNotification(
         channelDescription: _channel.description,
         importance: Importance.high,
         priority: Priority.high,
+      ),
+      iOS: const DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
       ),
     ),
   );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:neosecurity/Display.dart';
-import 'package:neosecurity/Main.dart';
 import 'package:neosecurity/randomNumCreate.dart';
 import 'FCMService.dart';
 import 'RestAPI.dart';
