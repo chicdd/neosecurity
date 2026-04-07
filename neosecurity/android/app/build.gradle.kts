@@ -79,7 +79,7 @@ android {
 
         create("Hanse") {
             dimension = "company-class"
-            applicationId = "com.neo.hansesecurity"
+            applicationId = "security"
             manifestPlaceholders["appName"] = "한세시큐리티"
             buildConfigField("String", "APP_NAME", "\"한세시큐리티\"")
             buildConfigField("String", "GAETONG_CODE", "\"62083651\"")

@@ -2,8 +2,11 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:neosecurity/RestAPI.dart';
-import 'package:neosecurity/globals.dart';
+import 'package:http/http.dart' as http;
+import 'package:xml/xml.dart';
+
+import 'RestAPI.dart';
+import 'globals.dart';
 
 const AndroidNotificationChannel _channel = AndroidNotificationChannel(
   'FCM_01',
@@ -13,7 +16,7 @@ const AndroidNotificationChannel _channel = AndroidNotificationChannel(
 );
 
 final FlutterLocalNotificationsPlugin _localNotifications =
-    FlutterLocalNotificationsPlugin();
+FlutterLocalNotificationsPlugin();
 
 // 백그라운드 핸들러 - top-level 함수여야 함 (별도 isolate로 실행)
 @pragma('vm:entry-point')
@@ -22,8 +25,8 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
   await _localNotifications
       .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin
-      >()
+      AndroidFlutterLocalNotificationsPlugin
+  >()
       ?.createNotificationChannel(_channel);
 
   await _localNotifications.initialize(
@@ -41,8 +44,8 @@ Future<void> initFCM() async {
   // 알림 채널 생성 (Android)
   await _localNotifications
       .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin
-      >()
+      AndroidFlutterLocalNotificationsPlugin
+  >()
       ?.createNotificationChannel(_channel);
 
   await _localNotifications.initialize(
@@ -59,13 +62,41 @@ Future<void> initFCM() async {
     sound: true,
   );
 
+  // iOS: 포그라운드에서도 알림 배너 표시
+  if (Platform.isIOS) {
+    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+  }
+
   // 백그라운드 핸들러 등록
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   // 포그라운드 메시지 처리
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    print('포그라운드 FCM 수신: ${message.data}');
-    _showNotification(message.data, skipSyscodeCheck: false);
+    print('포그라운드 FCM 수신 data: ${message.data}');
+    print('포그라운드 FCM notification: ${message.notification?.title} / ${message.notification?.body}');
+
+    if (Platform.isIOS) {
+      // iOS: setForegroundNotificationPresentationOptions로 시스템이 알림을 표시하므로
+      // data 메시지일 경우에만 로컬 알림으로 직접 표시
+      if (message.data.containsKey('msg')) {
+        _showNotification(message.data, skipSyscodeCheck: false);
+      }
+      // notification 타입은 iOS 시스템이 자동으로 배너 표시
+    } else {
+      // Android: 포그라운드에서 시스템이 알림을 표시하지 않으므로 직접 표시
+      if (message.data.containsKey('msg')) {
+        _showNotification(message.data, skipSyscodeCheck: false);
+      } else if (message.notification != null) {
+        _showSimpleNotification(
+          message.notification!.title ?? '',
+          message.notification!.body ?? '',
+        );
+      }
+    }
   });
 
   // 토큰 갱신 시 서버에 재등록
@@ -73,9 +104,19 @@ Future<void> initFCM() async {
     _registerToken(token);
   });
 
-  // 최초 토큰 서버 등록 (iOS 시뮬레이터는 APNS 미지원으로 실패할 수 있음)
+  // 최초 토큰 서버 등록
   try {
+    // iOS는 APNS 토큰을 먼저 확보해야 FCM 토큰 발급 가능
+    if (Platform.isIOS) {
+      final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+      print('APNS 토큰: $apnsToken');
+      if (apnsToken == null) {
+        print('APNS 토큰 없음 (시뮬레이터일 경우 정상)');
+        return;
+      }
+    }
     final token = await FirebaseMessaging.instance.getToken();
+    print('현재 FCM 토큰: $token');
     if (token != null) {
       _registerToken(token);
     }
@@ -85,7 +126,7 @@ Future<void> initFCM() async {
 }
 
 Future<void> _registerToken(String token) async {
-  if (phoneCode.isEmpty || syscode.isEmpty) return;
+
   final osDivision = Platform.isAndroid ? '001' : '002';
   try {
     await RestApiService().registUpdate(syscode, osDivision, token, phoneCode);
@@ -103,10 +144,34 @@ Future<void> registerFCMTokenAfterLogin() async {
   }
 }
 
+void _showSimpleNotification(String title, String body) {
+  if (title.isEmpty && body.isEmpty) return;
+
+  _localNotifications.show(
+    601,
+    title,
+    body,
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        _channel.id,
+        _channel.name,
+        channelDescription: _channel.description,
+        importance: Importance.high,
+        priority: Priority.high,
+      ),
+      iOS: const DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+      ),
+    ),
+  );
+}
+
 void _showNotification(
-  Map<String, dynamic> data, {
-  bool skipSyscodeCheck = false,
-}) {
+    Map<String, dynamic> data, {
+      bool skipSyscodeCheck = false,
+    }) {
   final msg = data['msg'] as String?;
   print('FCM msg 필드: $msg');
   if (msg == null || msg.isEmpty) return;
@@ -115,9 +180,9 @@ void _showNotification(
   print('FCM parts 개수: ${parts.length}, parts: $parts');
   if (parts.length < 9) return;
 
-  print('FCM 개통코드 비교: parts[0]=${parts[0]}, syscode=$syscode');
+  print('FCM 개통코드 비교: parts[0]=${parts[0]}, syscode=02111112');
   // 포그라운드: syscode 일치 여부 확인 / 백그라운드: 별도 isolate라 생략
-  if (!skipSyscodeCheck && parts[0] != syscode) return;
+  if (!skipSyscodeCheck && parts[0] != '02111112') return;
 
   final storeName = parts[4]; // 상호명
   final command = parts[5]; // 원격제어명령 (0=해제, 1=경계, 2=선로점검, 4=부분경계, 7=문열림, 8=문닫힘)
