@@ -55,11 +55,7 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
 
   Future<void> erpinitializeData() async {
     try {
-      // 1단계: 고객 리스트 가져오기
-      final erpcustomers = await RestApiService().erpCusListRequest(syscode, phoneCode);
-      erpList = erpcustomers;
-
-      if (erpcustomers.isEmpty) return;
+      if (erpList.isEmpty) return;
 
       // 현재 선택된 관제 고객의 name이 erpList에 있는지 확인
       final selectedName = cusList.isNotEmpty ? cusList[selectInt]['name'] ?? '' : '';
@@ -69,6 +65,11 @@ class _ERPCusInfoState extends State<ERPCusInfo> {
         yongnum = '';
         return;
       }
+      // 1단계: 고객 리스트 가져오기
+      final erpcustomers = await RestApiService().erpCusListRequest(syscode, phoneCode);
+      erpList = erpcustomers;
+
+
 
       erpselectInt = matchIdx;
       yongnum = erpList[matchIdx]['yongnum'] ?? '';

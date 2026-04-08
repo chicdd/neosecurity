@@ -127,9 +127,9 @@ Future<void> initFCM() async {
 
 Future<void> _registerToken(String token) async {
 
-  final osDivision = Platform.isAndroid ? '001' : '002';
+
   try {
-    await RestApiService().registUpdate(syscode, osDivision, token, phoneCode);
+    await RestApiService().registUpdate(syscode, token, phoneCode);
     print('FCM 토큰 등록 완료: $token');
   } catch (e) {
     print('FCM 토큰 등록 실패: $e');
@@ -180,9 +180,9 @@ void _showNotification(
   print('FCM parts 개수: ${parts.length}, parts: $parts');
   if (parts.length < 9) return;
 
-  print('FCM 개통코드 비교: parts[0]=${parts[0]}, syscode=02111112');
+  print('FCM 개통코드 비교: parts[0]=${parts[0]}, syscode=$syscode');
   // 포그라운드: syscode 일치 여부 확인 / 백그라운드: 별도 isolate라 생략
-  if (!skipSyscodeCheck && parts[0] != '02111112') return;
+  if (!skipSyscodeCheck && parts[0] != syscode) return;
 
   final storeName = parts[4]; // 상호명
   final command = parts[5]; // 원격제어명령 (0=해제, 1=경계, 2=선로점검, 4=부분경계, 7=문열림, 8=문닫힘)
