@@ -23,7 +23,7 @@ class _ClaimInfoState extends State<ClaimInfo> {
   void initState() {
     super.initState();
     _initializeFilters();
-    _claimFuture = yongnum.isEmpty ? Future.value([]) : fetchClaim();
+    _claimFuture = fetchClaim(); // Future로 저장
   }
 
   void _initializeFilters() {
