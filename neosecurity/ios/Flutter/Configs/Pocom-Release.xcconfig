@@ -9,7 +9,7 @@ PRODUCT_NAME = 포콤방범시스템
 // App Store 업로드 설정
 CODE_SIGN_STYLE = Manual
 CODE_SIGN_IDENTITY = iPhone Distribution
-PROVISIONING_PROFILE_SPECIFIER = Pocom App Store
+PROVISIONING_PROFILE_SPECIFIER = pocom App Store
 
 // Release 최적화 설정
 SWIFT_COMPILATION_MODE = wholemodule

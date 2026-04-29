@@ -14,9 +14,9 @@ if [[ "${CONFIGURATION}" == *"C1"* ]] || [[ "${PRODUCT_NAME}" == *"순천씨원"
 elif [[ "${CONFIGURATION}" == *"Kone"* ]] || [[ "${PRODUCT_NAME}" == *"한국안전시스템"* ]]; then
     echo "Copying Kone app icons..."
     SOURCE_PATH="$SRCROOT/Runner/Assets-Kone.xcassets/AppIcon.appiconset"
-elif [[ "${CONFIGURATION}" == *"Pocom"* ]] || [[ "${PRODUCT_NAME}" == *"포콤방범시스템"* ]]; then
-    echo "Copying Pocom app icons..."
-    SOURCE_PATH="$SRCROOT/Runner/Assets-Pocom.xcassets/AppIcon.appiconset"
+elif [[ "${CONFIGURATION}" == *"pocom"* ]] || [[ "${PRODUCT_NAME}" == *"포콤방범시스템"* ]]; then
+    echo "Copying pocom app icons..."
+    SOURCE_PATH="$SRCROOT/Runner/Assets-pocom.xcassets/AppIcon.appiconset"
 elif [[ "${CONFIGURATION}" == *"Hanse"* ]] || [[ "${PRODUCT_NAME}" == *"한세시큐리티"* ]]; then
     echo "Copying Hanse app icons..."
     SOURCE_PATH="$SRCROOT/Runner/Assets-Hanse.xcassets/AppIcon.appiconset"

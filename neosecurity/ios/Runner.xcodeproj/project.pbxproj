@@ -53,10 +53,10 @@
 		1E019C5D2F39C93600A52919 /* Takra-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Takra-Release.xcconfig"; path = "Flutter/Configs/Takra-Release.xcconfig"; sourceTree = "<group>"; };
 		1E3B60B52E83D7220019E194 /* C1.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = C1.xcconfig; path = Flutter/Configs/C1.xcconfig; sourceTree = "<group>"; };
 		1E3B60B62E83D7220019E194 /* Kone.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Kone.xcconfig; path = Flutter/Configs/Kone.xcconfig; sourceTree = "<group>"; };
-		1E3B60B72E83D7220019E194 /* Pocom.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Pocom.xcconfig; path = Flutter/Configs/Pocom.xcconfig; sourceTree = "<group>"; };
+		1E3B60B72E83D7220019E194 /* pocom.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = pocom.xcconfig; path = Flutter/Configs/pocom.xcconfig; sourceTree = "<group>"; };
 		1E3B60B82E83D7230019E194 /* C1-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "C1-Release.xcconfig"; path = "Flutter/Configs/C1-Release.xcconfig"; sourceTree = "<group>"; };
 		1E3B60B92E83D7230019E194 /* Kone-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Kone-Release.xcconfig"; path = "Flutter/Configs/Kone-Release.xcconfig"; sourceTree = "<group>"; };
-		1E3B60BA2E83D7230019E194 /* Pocom-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pocom-Release.xcconfig"; path = "Flutter/Configs/Pocom-Release.xcconfig"; sourceTree = "<group>"; };
+		1E3B60BA2E83D7230019E194 /* pocom-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "pocom-Release.xcconfig"; path = "Flutter/Configs/pocom-Release.xcconfig"; sourceTree = "<group>"; };
 		1E4111A1CA954B03B413AF2F /* Hanse-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Hanse-Release.xcconfig"; path = "Flutter/Configs/Hanse-Release.xcconfig"; sourceTree = "<group>"; };
 		1E7C77762E4DDE22009F6498 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		1E7C77772E4DDE22009F6498 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		35D9BA75A8E23FEC0394FDCE /* Pods-RunnerTests.hanse-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.hanse-release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.hanse-release.xcconfig"; sourceTree = "<group>"; };
 		3795AA58F7A359F84EE150EA /* Pods-Runner.pocom-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.pocom-release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.pocom-release.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		4CADBE6E888846B8E94A20BC /* Pods-Runner.Pocom-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.Pocom-release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.Pocom-release.xcconfig"; sourceTree = "<group>"; };
+		4CADBE6E888846B8E94A20BC /* Pods-Runner.pocom-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.pocom-release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.pocom-release.xcconfig"; sourceTree = "<group>"; };
 		4D3407892B6FFF196D571A5C /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F186B260AE6225393702F04 /* Pods-RunnerTests.c1-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.c1-release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.c1-release.xcconfig"; sourceTree = "<group>"; };
 		535C8713C736844C3EC4BBB2 /* Pods-Runner.kone-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.kone-debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.kone-debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,19 +95,19 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99152B6E369108F19D9D95E2 /* Pods-RunnerTests.Pocom-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.Pocom-release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.Pocom-release.xcconfig"; sourceTree = "<group>"; };
+		99152B6E369108F19D9D95E2 /* Pods-RunnerTests.pocom-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.pocom-release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.pocom-release.xcconfig"; sourceTree = "<group>"; };
 		9A8924FF8A25C43936FE57E0 /* Pods-RunnerTests.kone-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.kone-debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.kone-debug.xcconfig"; sourceTree = "<group>"; };
 		9CB5BF5830C3472DB6CA80F8 /* Hanse.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Hanse.xcconfig; path = Flutter/Configs/Hanse.xcconfig; sourceTree = "<group>"; };
 		9F8F981AD9A6D718A73AD280 /* Pods-RunnerTests.hansesecurity-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.hansesecurity-release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.hansesecurity-release.xcconfig"; sourceTree = "<group>"; };
 		AA3F3F6873F4B7ACF2413832 /* Pods-Runner.kone-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.kone-release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.kone-release.xcconfig"; sourceTree = "<group>"; };
 		AA96D52985DCFFD889F2EDC2 /* Pods-Runner.hansesecurity-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.hansesecurity-release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.hansesecurity-release.xcconfig"; sourceTree = "<group>"; };
 		B7A57BA322A2619AAC8B8121 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
-		BE6E35E7E0DBF1FEA4E37808 /* Pods-RunnerTests.Pocom-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.Pocom-debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.Pocom-debug.xcconfig"; sourceTree = "<group>"; };
+		BE6E35E7E0DBF1FEA4E37808 /* Pods-RunnerTests.pocom-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.pocom-debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.pocom-debug.xcconfig"; sourceTree = "<group>"; };
 		C105FA9D8C91839B9BA5721B /* Pods-RunnerTests.takra-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.takra-debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.takra-debug.xcconfig"; sourceTree = "<group>"; };
 		C85D36D191A3E4A55C5285C7 /* Pods-Runner.takra-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.takra-debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.takra-debug.xcconfig"; sourceTree = "<group>"; };
 		D62D9F5DE83251E90576BF7F /* Pods-RunnerTests.takra-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.takra-release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.takra-release.xcconfig"; sourceTree = "<group>"; };
 		E69C2F397C32FD645DD64A8C /* Pods-RunnerTests.pocom-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.pocom-debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.pocom-debug.xcconfig"; sourceTree = "<group>"; };
-		EE6C3351A70E9BDF9F3FFE7E /* Pods-Runner.Pocom-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.Pocom-debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.Pocom-debug.xcconfig"; sourceTree = "<group>"; };
+		EE6C3351A70E9BDF9F3FFE7E /* Pods-Runner.pocom-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.pocom-debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.pocom-debug.xcconfig"; sourceTree = "<group>"; };
 		F7273F9FA3A500612A7D71DD /* Pods-RunnerTests.hansesecurity-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.hansesecurity-debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.hansesecurity-debug.xcconfig"; sourceTree = "<group>"; };
 		FA4726BC5EDA61A57496B799 /* Pods-RunnerTests.kone-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.kone-release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.kone-release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,11 +159,11 @@
 				1E3B60B52E83D7220019E194 /* C1.xcconfig */,
 				9CB5BF5830C3472DB6CA80F8 /* Hanse.xcconfig */,
 				1E3B60B62E83D7220019E194 /* Kone.xcconfig */,
-				1E3B60B72E83D7220019E194 /* Pocom.xcconfig */,
+				1E3B60B72E83D7220019E194 /* pocom.xcconfig */,
 				1E3B60B82E83D7230019E194 /* C1-Release.xcconfig */,
 				1E4111A1CA954B03B413AF2F /* Hanse-Release.xcconfig */,
 				1E3B60B92E83D7230019E194 /* Kone-Release.xcconfig */,
-				1E3B60BA2E83D7230019E194 /* Pocom-Release.xcconfig */,
+				1E3B60BA2E83D7230019E194 /* pocom-Release.xcconfig */,
 			);
 			name = Flutter;
 			sourceTree = "<group>";
@@ -220,16 +220,16 @@
 				2909FE72CAF5EB2D1EA2F894 /* Pods-RunnerTests.profile.xcconfig */,
 				7C8BFC9525522401603CAE0A /* Pods-Runner.c1-debug.xcconfig */,
 				535C8713C736844C3EC4BBB2 /* Pods-Runner.kone-debug.xcconfig */,
-				EE6C3351A70E9BDF9F3FFE7E /* Pods-Runner.Pocom-debug.xcconfig */,
+				EE6C3351A70E9BDF9F3FFE7E /* Pods-Runner.pocom-debug.xcconfig */,
 				1FFA8B37F128057386A32459 /* Pods-Runner.c1-release.xcconfig */,
 				AA3F3F6873F4B7ACF2413832 /* Pods-Runner.kone-release.xcconfig */,
-				4CADBE6E888846B8E94A20BC /* Pods-Runner.Pocom-release.xcconfig */,
+				4CADBE6E888846B8E94A20BC /* Pods-Runner.pocom-release.xcconfig */,
 				8024605B46BB0FAF5398E557 /* Pods-RunnerTests.c1-debug.xcconfig */,
 				9A8924FF8A25C43936FE57E0 /* Pods-RunnerTests.kone-debug.xcconfig */,
-				BE6E35E7E0DBF1FEA4E37808 /* Pods-RunnerTests.Pocom-debug.xcconfig */,
+				BE6E35E7E0DBF1FEA4E37808 /* Pods-RunnerTests.pocom-debug.xcconfig */,
 				4F186B260AE6225393702F04 /* Pods-RunnerTests.c1-release.xcconfig */,
 				FA4726BC5EDA61A57496B799 /* Pods-RunnerTests.kone-release.xcconfig */,
-				99152B6E369108F19D9D95E2 /* Pods-RunnerTests.Pocom-release.xcconfig */,
+				99152B6E369108F19D9D95E2 /* Pods-RunnerTests.pocom-release.xcconfig */,
 				34F4A398ED4DC0CA4285FF7E /* Pods-Runner.hansesecurity-debug.xcconfig */,
 				AA96D52985DCFFD889F2EDC2 /* Pods-Runner.hansesecurity-release.xcconfig */,
 				F7273F9FA3A500612A7D71DD /* Pods-RunnerTests.hansesecurity-debug.xcconfig */,
@@ -281,6 +281,7 @@
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
+				1E08D71C2FA1C2DF00CEE8D2 /* Setup Firebase Config */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
@@ -359,6 +360,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1E08D71C2FA1C2DF00CEE8D2 /* Setup Firebase Config */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Setup Firebase Config";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 환경별 GoogleService-Info.plist 경로 설정\nHANSESECURITY_CONFIG=\"${PROJECT_DIR}/Firebase/Hansesecurity/GoogleService-Info.plist\"\nTAKRA_CONFIG=\"${PROJECT_DIR}/Firebase/Takra/GoogleService-Info.plist\"\n\n# 현재 빌드되는 Bundle Identifier 확인\nBUNDLE_ID=$PRODUCT_BUNDLE_IDENTIFIER\n\n# 목적지 경로 (Runner의 루트)\nDESTINATION=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n\nif [ \"$BUNDLE_ID\" == \"com.neo.hansesecurity\" ]; then\n    echo \"Using Hansesecurity Firebase Config\"\n    cp \"${HANSESECURITY_CONFIG}\" \"${DESTINATION}\"\nelif [ \"$BUNDLE_ID\" == \"com.neo.Takra\" ]; then\n    echo \"Using Takra Firebase Config\"\n    cp \"${TAKRA_CONFIG}\" \"${DESTINATION}\"\nelse\n    echo \"No matching Firebase config for Bundle ID: $BUNDLE_ID\"\nfi\n";
+		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -410,7 +429,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
 		};
 		9E8ABCE792D72DD464F39322 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -420,9 +439,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -437,9 +460,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -614,7 +641,7 @@
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphoneos*]" = armv7;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "타크라보안";
@@ -728,7 +755,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "타크라보안";
@@ -781,7 +808,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국안전시스템";
@@ -911,7 +938,7 @@
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국안전시스템";
@@ -1088,7 +1115,7 @@
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FLUTTER_APP_NAME = "씨원시큐리티";
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "씨원시큐리티";
@@ -1202,7 +1229,7 @@
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
 				FLUTTER_APP_NAME = "씨원시큐리티";
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "씨원시큐리티";
@@ -1224,7 +1251,7 @@
 			};
 			name = "C1-Release";
 		};
-		1E3B609F2E83D4FB0019E194 /* Pocom-Debug */ = {
+		1E3B609F2E83D4FB0019E194 /* pocom-Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
@@ -1284,11 +1311,11 @@
 				SUPPORTS_MACCATALYST = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = "Pocom-Debug";
+			name = "pocom-Debug";
 		};
-		1E3B60A02E83D4FB0019E194 /* Pocom-Debug */ = {
+		1E3B60A02E83D4FB0019E194 /* pocom-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E3B60B72E83D7220019E194 /* Pocom.xcconfig */;
+			baseConfigurationReference = 1E3B60B72E83D7220019E194 /* pocom.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1300,7 +1327,7 @@
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "포콤방범시스템";
@@ -1321,9 +1348,9 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
-			name = "Pocom-Debug";
+			name = "pocom-Debug";
 		};
-		1E3B60A12E83D4FB0019E194 /* Pocom-Debug */ = {
+		1E3B60A12E83D4FB0019E194 /* pocom-Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E69C2F397C32FD645DD64A8C /* Pods-RunnerTests.pocom-debug.xcconfig */;
 			buildSettings = {
@@ -1340,9 +1367,9 @@
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
 			};
-			name = "Pocom-Debug";
+			name = "pocom-Debug";
 		};
-		1E3B60A22E83D58F0019E194 /* Pocom-Release */ = {
+		1E3B60A22E83D58F0019E194 /* pocom-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
@@ -1398,11 +1425,11 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "Pocom-Release";
+			name = "pocom-Release";
 		};
-		1E3B60A32E83D58F0019E194 /* Pocom-Release */ = {
+		1E3B60A32E83D58F0019E194 /* pocom-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E3B60BA2E83D7230019E194 /* Pocom-Release.xcconfig */;
+			baseConfigurationReference = 1E3B60BA2E83D7230019E194 /* pocom-Release.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1414,7 +1441,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "포콤방범시스템";
@@ -1434,9 +1461,9 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
-			name = "Pocom-Release";
+			name = "pocom-Release";
 		};
-		1E3B60A42E83D58F0019E194 /* Pocom-Release */ = {
+		1E3B60A42E83D58F0019E194 /* pocom-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 687C3A448A13CC1739F19C71 /* Pods-RunnerTests.pocom-release.xcconfig */;
 			buildSettings = {
@@ -1450,7 +1477,7 @@
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
 			};
-			name = "Pocom-Release";
+			name = "pocom-Release";
 		};
 		249021D3217E4FDB00AE95B9 /* Profile */ = {
 			isa = XCBuildConfiguration;
@@ -1519,7 +1546,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = default;
@@ -1725,7 +1752,7 @@
 				DEVELOPMENT_TEAM = UL33T55DKB;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = default;
@@ -1761,7 +1788,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1804,7 +1831,7 @@
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한세시큐리티";
@@ -1841,7 +1868,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6R8X2V5QD;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.1.0;
+				FLUTTER_BUILD_NAME = 1.1.1;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한세시큐리티";
@@ -2028,13 +2055,13 @@
 				1E3B609C2E83D4FA0019E194 /* C1-Debug */,
 				C3D4E5F6789012345678A1B2 /* Hanse-Debug */,
 				1E3B60982E83D4F90019E194 /* Kone-Debug */,
-				1E3B60A12E83D4FB0019E194 /* Pocom-Debug */,
+				1E3B60A12E83D4FB0019E194 /* pocom-Debug */,
 				1E019C582F39C81F00A52919 /* Takra-Debug */,
 				331C8089294A63A400263BE5 /* Release */,
 				1E3B60952E83D4F80019E194 /* C1-Release */,
 				D4E5F6789012345678A1B2C3 /* Hanse-Release */,
 				1E3B60942E83D4F80019E194 /* Kone-Release */,
-				1E3B60A42E83D58F0019E194 /* Pocom-Release */,
+				1E3B60A42E83D58F0019E194 /* pocom-Release */,
 				1E019C5B2F39C82E00A52919 /* Takra-Release */,
 				331C808A294A63A400263BE5 /* Profile */,
 			);
@@ -2048,13 +2075,13 @@
 				1E3B609A2E83D4FA0019E194 /* C1-Debug */,
 				E5F6789012345678A1B2C3D4 /* Hanse-Debug */,
 				1E3B60962E83D4F90019E194 /* Kone-Debug */,
-				1E3B609F2E83D4FB0019E194 /* Pocom-Debug */,
+				1E3B609F2E83D4FB0019E194 /* pocom-Debug */,
 				1E019C562F39C81F00A52919 /* Takra-Debug */,
 				97C147041CF9000F007C117D /* Release */,
 				1E3B609D2E83D4FA0019E194 /* C1-Release */,
 				F6789012345678A1B2C3D4E5 /* Hanse-Release */,
 				1E3B60992E83D4F90019E194 /* Kone-Release */,
-				1E3B60A22E83D58F0019E194 /* Pocom-Release */,
+				1E3B60A22E83D58F0019E194 /* pocom-Release */,
 				1E019C592F39C82E00A52919 /* Takra-Release */,
 				249021D3217E4FDB00AE95B9 /* Profile */,
 			);
@@ -2068,13 +2095,13 @@
 				1E3B609B2E83D4FA0019E194 /* C1-Debug */,
 				A1B2C3D4E5F6789012345678 /* Hanse-Debug */,
 				1E3B60972E83D4F90019E194 /* Kone-Debug */,
-				1E3B60A02E83D4FB0019E194 /* Pocom-Debug */,
+				1E3B60A02E83D4FB0019E194 /* pocom-Debug */,
 				1E019C572F39C81F00A52919 /* Takra-Debug */,
 				97C147071CF9000F007C117D /* Release */,
 				1E3B609E2E83D4FA0019E194 /* C1-Release */,
 				B2C3D4E5F6789012345678A1 /* Hanse-Release */,
 				1E3B60932E83D4F80019E194 /* Kone-Release */,
-				1E3B60A32E83D58F0019E194 /* Pocom-Release */,
+				1E3B60A32E83D58F0019E194 /* pocom-Release */,
 				1E019C5A2F39C82E00A52919 /* Takra-Release */,
 				249021D4217E4FDB00AE95B9 /* Profile */,
 			);

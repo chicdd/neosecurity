@@ -183,7 +183,7 @@ Future<void> initializeData() async {
 String getImageForGaetongCode(String syscode) {
   switch (syscode) {
     case '02111112':
-      return 'image/Pocom_Logo.png';
+      return 'image/pocom_Logo.png';
     case '61062298':
       return 'image/C1_Logo.png';
     case '53220129':
