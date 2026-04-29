@@ -1,5 +1,5 @@
 #include "../Debug.xcconfig"
-
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.kone-debug.xcconfig"
 // 한국안전시스템 Flavor 설정
 FLUTTER_APP_NAME = 한국안전시스템
 FLUTTER_GAETONG_CODE = 53220129

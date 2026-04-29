@@ -1,5 +1,5 @@
 #include "../Debug.xcconfig"
-
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.takra-debug.xcconfig"
 // 타크라보안 Flavor 설정
 FLUTTER_APP_NAME = 타크라보안
 FLUTTER_GAETONG_CODE = 31160078

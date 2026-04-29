@@ -1,5 +1,5 @@
 #include "../Release.xcconfig"
-
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.hanse-release.xcconfig"
 // 한세시큐리티 Release Flavor 설정
 FLUTTER_APP_NAME = 한세시큐리티
 FLUTTER_GAETONG_CODE = 62083651

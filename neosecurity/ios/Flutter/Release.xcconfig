@@ -6,3 +6,6 @@
 FLUTTER_APP_NAME = neosecurity
 FLUTTER_GAETONG_CODE = 00000000
 PRODUCT_BUNDLE_IDENTIFIER = com.neo.neosecurity
+
+// App Store 업로드 시 시뮬레이터 아키텍처(x86_64) 제외
+EXCLUDED_ARCHS[sdk=iphoneos*] = x86_64
