@@ -1,9 +1,19 @@
+import java.util.Properties //파일 시스템에 있는 실제 파일을 '데이터 스트림' 형태로 열기 위해 사용
+import java.io.FileInputStream //key=value 형태로 작성된 텍스트 데이터를 'Key-Value 구조(사전 형식)'로 변환하여 다루기 위해 사용
+//key.properties 파일 로드 하려면 import 해야함..
 plugins {
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
     id("com.google.gms.google-services")
+}
+
+// key.properties 파일 로드
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(keystorePropertiesFile.inputStream())
 }
 
 android {
@@ -55,9 +65,9 @@ android {
             buildConfigField("String", "APP_NAME", "\"타크라보안\"")
             buildConfigField("String", "GAETONG_CODE", "\"31160078\"")
         }
-        create("Pocom") {
+        create("pocom") {
             dimension = "company-class"
-            applicationId = "com.neo.Pocom"
+            applicationId = "com.neo.pocom"
             manifestPlaceholders["appName"] = "포콤방범시스템"
             buildConfigField("String", "APP_NAME", "\"포콤방범시스템\"")
             buildConfigField("String", "GAETONG_CODE", "\"02111112\"")
@@ -86,11 +96,19 @@ android {
         }
     }
 
+    // Release 서명 설정
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

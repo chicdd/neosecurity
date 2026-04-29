@@ -1,4 +1,4 @@
-// enum Flavor { Pocom, suncheonC1, hankukAnjeon }
+// enum Flavor { pocom, suncheonC1, hankukAnjeon }
 //
 // class FlavorConfig {
 //   final Flavor flavor;

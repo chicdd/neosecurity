@@ -3,7 +3,7 @@
 // 포콤방범시스템 Release Flavor 설정
 FLUTTER_APP_NAME = 포콤방범시스템
 FLUTTER_GAETONG_CODE = 02111112
-PRODUCT_BUNDLE_IDENTIFIER = com.neo.Pocom
+PRODUCT_BUNDLE_IDENTIFIER = com.neo.pocom
 PRODUCT_NAME = 포콤방범시스템
 
 // App Store 업로드 설정
